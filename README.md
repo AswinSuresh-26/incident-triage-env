@@ -1,3 +1,18 @@
+---
+title: Incident Triage Env
+emoji: 🚨
+colorFrom: red
+colorTo: orange
+sdk: docker
+pinned: false
+tags:
+  - openenv
+  - reinforcement-learning
+  - sre
+  - agent
+license: mit
+---
+
 # Incident Triage Environment
 
 An OpenEnv-compatible reinforcement learning environment that simulates **SRE incident triage**. An agent must diagnose and resolve production incidents across three difficulty tiers by choosing from a discrete action space.
