@@ -123,7 +123,7 @@ def _heuristic_action(obs: dict) -> dict:
 def _llm_action(obs: dict, model: str, api_key: str, base_url: str) -> dict:
     try:
         from openai import OpenAI
-        llm_base_url = os.environ.get("API_BASE_URL") or (base_url if base_url else None)
+        llm_base_url = os.environ.get("API_BASE_URL", "https://router.huggingface.co/v1") or (base_url if base_url else None)
         client = OpenAI(api_key=api_key, base_url=llm_base_url)
         user_msg = json.dumps(obs, indent=2)
         resp = client.chat.completions.create(
