@@ -91,7 +91,9 @@ def health() -> dict:
 
 
 @app.post("/reset", response_model=ResetResponse)
-def reset(req: ResetRequest = Body(default=ResetRequest())) -> ResetResponse:
+def reset(req: Optional[ResetRequest] = Body(default=None)) -> ResetResponse:
+    if req is None:
+        req = ResetRequest()
     session_id = str(uuid.uuid4())
     state = EpisodeState(seed=req.seed)
     obs = state.env.reset(task_id=req.task_id)
