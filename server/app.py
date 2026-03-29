@@ -4,7 +4,7 @@ import time
 import uuid
 from typing import Dict, Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Body, FastAPI, HTTPException
 from pydantic import BaseModel
 
 from env.environment import IncidentEnv
@@ -91,7 +91,7 @@ def health() -> dict:
 
 
 @app.post("/reset", response_model=ResetResponse)
-def reset(req: ResetRequest) -> ResetResponse:
+def reset(req: ResetRequest = Body(default=ResetRequest())) -> ResetResponse:
     session_id = str(uuid.uuid4())
     state = EpisodeState(seed=req.seed)
     obs = state.env.reset(task_id=req.task_id)
