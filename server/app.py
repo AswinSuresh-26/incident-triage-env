@@ -134,3 +134,12 @@ def grader(req: GradeRequest) -> GradeResponse:
         )
     score = grade(task_id, history)
     return GradeResponse(task_id=task_id, score=score, history=history)
+
+
+def main() -> None:
+    import uvicorn
+    uvicorn.run("server.app:app", host="0.0.0.0", port=7860)
+
+
+if __name__ == "__main__":
+    main()
