@@ -1,0 +1,47 @@
+commit d03675236835f3ce44e7d941ecc4c9274a23dda2
+Author: ashhhhhh26 <ashhhhhh26@users.noreply.huggingface.co>
+Date:   Sun Mar 29 21:47:24 2026 +0530
+
+    Add pyproject.toml, uv.lock, server/app.py for openenv validate compliance
+    
+    - Move server.py → server/app.py with main() entry point
+    - Add server/__init__.py for backward-compat imports
+    - Add pyproject.toml with [project.scripts] server = server.app:main
+    - Generate uv.lock (openenv-core>=0.2.0 requires openai>=2.7.2)
+    - Update Dockerfile CMD to uvicorn server.app:app
+    
+    Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+commit 32da7b280ccb094695bede0173cf5741f4d8d083
+Author: ashhhhhh26 <ashhhhhh26@users.noreply.huggingface.co>
+Date:   Sat Mar 28 17:43:16 2026 +0530
+
+    fix: default API_BASE_URL to HF router when env var not set
+
+commit 9205b929ea9e7e615ec87516989f726f1dc0c2f0
+Author: ashwin <ashwin@example.com>
+Date:   Sat Mar 28 17:21:32 2026 +0530
+
+    Fix colorTo to valid HF value
+
+commit 3e2dfd2f41f60ad8f529894d0e57b7b33f1b65d5
+Author: ashwin <ashwin@example.com>
+Date:   Sat Mar 28 17:21:17 2026 +0530
+
+    Add HF Space card metadata with openenv tag
+
+commit 463b54040fad2b169fb7e1f79bdf6436da7c296b
+Author: ashwin <ashwin@example.com>
+Date:   Sat Mar 28 17:16:51 2026 +0530
+
+    Initial commit: SRE Incident Triage OpenEnv environment
+    
+    - 3 tasks: single_service_down, memory_leak_cascade, ghost_deploy_regression
+    - Dense reward system with exploration bonuses and efficiency rewards
+    - Heuristic fallback agent achieving 1.00/1.00/1.00 baseline
+    - FastAPI server with OpenEnv-compliant /reset, /step, /grade, /state endpoints
+    - 54 passing tests across all modules
+    - OpenAI-compatible LLM agent with heuristic fallback
+    - OpenEnv manifest (openenv.yaml), Dockerfile on port 7860
+    
+    Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>

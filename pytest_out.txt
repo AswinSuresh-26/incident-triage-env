@@ -1,0 +1,49 @@
+.................FFF..F.....F............................                [100%]
+================================== FAILURES ===================================
+____________________ test_exploration_check_metrics_reward ____________________
+tests\test_grader.py:16: in test_exploration_check_metrics_reward
+    assert reward == pytest.approx(0.15)
+E   assert 0.1 == 0.15 ▒ 1.5e-07
+E     
+E     comparison failed
+E     Obtained: 0.1
+E     Expected: 0.15 ▒ 1.5e-07
+_______________________ test_exploration_capped_at_max ________________________
+tests\test_grader.py:24: in test_exploration_capped_at_max
+    assert reward == pytest.approx(0.15)
+E   assert 0.1 == 0.15 ▒ 1.5e-07
+E     
+E     comparison failed
+E     Obtained: 0.1
+E     Expected: 0.15 ▒ 1.5e-07
+______________________________ test_loop_penalty ______________________________
+tests\test_grader.py:32: in test_loop_penalty
+    assert reward == pytest.approx(0.15)
+E   assert 0.1 == 0.15 ▒ 1.5e-07
+E     
+E     comparison failed
+E     Obtained: 0.1
+E     Expected: 0.15 ▒ 1.5e-07
+____________________ test_destructive_wrong_action_penalty ____________________
+tests\test_grader.py:52: in test_destructive_wrong_action_penalty
+    assert reward == pytest.approx(0.15)
+E   assert 0.1 == 0.15 ▒ 1.5e-07
+E     
+E     comparison failed
+E     Obtained: 0.1
+E     Expected: 0.15 ▒ 1.5e-07
+______________________ test_grade_no_resolution_penalty _______________________
+tests\test_grader.py:107: in test_grade_no_resolution_penalty
+    assert score == pytest.approx(0.15)
+E   assert 0.1 == 0.15 ▒ 1.5e-07
+E     
+E     comparison failed
+E     Obtained: 0.1
+E     Expected: 0.15 ▒ 1.5e-07
+=========================== short test summary info ===========================
+FAILED tests/test_grader.py::test_exploration_check_metrics_reward - assert 0...
+FAILED tests/test_grader.py::test_exploration_capped_at_max - assert 0.1 == 0...
+FAILED tests/test_grader.py::test_loop_penalty - assert 0.1 == 0.15 ▒ 1.5e-07
+FAILED tests/test_grader.py::test_destructive_wrong_action_penalty - assert 0...
+FAILED tests/test_grader.py::test_grade_no_resolution_penalty - assert 0.1 ==...
+5 failed, 52 passed in 0.68s

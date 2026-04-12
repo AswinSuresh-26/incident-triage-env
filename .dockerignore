@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.git/
+.gitignore
+uv.lock
+gitlog*.txt
+remotes.txt

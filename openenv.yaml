@@ -1,0 +1,71 @@
+name: incident-triage-env
+description: >
+  SRE Incident Triage — a multi-task reinforcement learning environment
+  where an agent diagnoses and resolves production incidents across three
+  difficulty tiers (easy / medium / hard).
+version: "1.0.0"
+author: ashwin
+
+server:
+  port: 7860
+  health_check: /health
+
+endpoints:
+  reset:
+    path: /reset
+    method: POST
+    description: Start a new episode. Returns session_id and initial Observation.
+  step:
+    path: /step
+    method: POST
+    description: Apply an action. Returns Observation, reward, done, info.
+  state:
+    path: /state/{session_id}
+    method: GET
+    description: Return full internal state for a session.
+  grade:
+    path: /grade
+    method: POST
+    description: Grade a trajectory. Accepts session_id OR (task_id + history).
+  tasks:
+    path: /tasks
+    method: GET
+    description: List available tasks with grader availability metadata.
+
+tasks:
+  - id: easy
+    difficulty: easy
+    description: One microservice is down. Single CRITICAL alert. Logs show connection refused.
+  - id: medium
+    difficulty: medium
+    description: Two services show high memory. One is the leak source; the other is a symptom.
+  - id: hard
+    difficulty: hard
+    description: Recent deploy looks successful but introduced a DB connection pool misconfiguration.
+
+action_space:
+  - inspect_logs
+  - check_metrics
+  - restart_service
+  - scale_up
+  - rollback_deploy
+  - escalate
+  - silence_alert
+  - correlate_services
+
+reward:
+  min: 0.1
+  max: 0.9
+  type: dense
+  description: >
+    Per-step rewards for exploration (inspect_logs, check_metrics, correlate_services),
+    terminal rewards for resolution quality, efficiency bonus for fast resolution,
+    penalties for loops and destructive wrong actions. All scores strictly in (0, 1).
+
+baseline:
+  agent: heuristic
+  scores:
+    easy: 0.5
+    medium: 0.5
+    hard: 0.5
+  inference_script: inference.py
